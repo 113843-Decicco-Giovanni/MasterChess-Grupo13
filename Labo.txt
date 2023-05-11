@@ -1,0 +1,39 @@
+Clases:
+	Jugador
+	Partida
+	Juego (Singleton)
+	Tablero
+	Ficha e hijas
+
+	Guardamos partidas en archivos de texto plano con notación oficial
+	La notación oficial de la ajedrez funciona de la siguiente manera:
+	- Al principio una letra utilizada para designar la pieza que se mueve
+	- Seguida de lo que sucede en la siguiente accion por otra letra, como puede ser
+	  la eliminacion de otra pieza, jaque o jaque mate
+	- La casilla hacia donde se va a mover esta pieza designado por la columna
+	  (que se define con letras) seguido de la fila que se designa con números.
+
+Patrones: 
+	Observer
+	Estado
+	Singleton
+	Strategy
+	
+	El patron de estado se implementa crendo una intefaz llamada IEstado con los metodos
+verificarJaque, realizarMovimiento etc. Entonces se implementa la interfaz a las clases
+concretas de estados de juego
+
+	El patron estrategia tiene que utilizarse por ejemplo para realizar la funcionalidades de
+movimiento de las piezas, implementando una Interfaz movimiento pieza con el metodo mover
+que tome como parámetro la posicion actual de la pieza y la posición a la que se intenta mover
+y se implemente en la clase MovimientoPieza con su lógica independiente.
+	A su vez estas clases se pueden implementar en la clase Pieza en el atributo movimiento
+Se moverá utilizando el método mover del atributo movimiento.
+
+	El patrón observador se implementará como una interfaz en la clase de la interfaz gráfica,
+esto nos permite mantener actualizadas a las clases observadoras de los cambios importantes en el
+programa, por ejemplo, un cambio en el estado de juego, un estado de jaque, final del juego, aban
+dono del jugador, finalizacion del tiempo, etc.
+	Se implementa la interfaz definida en la clase utilizazda para la interfaz gráfica, y se
+agrega como observador a la lista de observadores que está como atributo en la clase que implemente la lógica del juego, permitiendo crear un metodo que cada vez que se produzca un estado informe a toda
+la lista de observadores del cambio, con el metodo notificarObservadores
